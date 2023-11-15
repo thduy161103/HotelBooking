@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/fonts/themify-icons/themify-icons.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="header">
+        <img class="header-logo" src="assets\img\logo.jpg" alt="">
+    </div>
+    <!-- page-login -->
+    <div class="row content pd-0-160">
+        <div id="page-login">
+            <div class="col col-8">
+                <img class="img" src="https://omimultimarket.com/inc/style.lib/assets/images/login.png" alt="">
+            </div>
+
+            <div class="col col-4">
+                <div class="welcome">Welcome Back</div>
+                <div class="instruction">To keep connected with us please login with your
+                    personal information by username and password <i class="ti-bell"></i></div>
+                <form action="/login" method="post">
+                    <div class="input-content">   
+                        <div class="input">
+                            <i class="ti-user icon"></i><span></span>
+                            <div class="input-data">
+                                <label for="input-username"></label>
+                                <div class="text-data">Username</div>
+                                <input type="text" id="input-username" name="input-username">
+                            </div>
+
+                        </div>
+
+                        <div class="input">
+                            <i class="ti-lock icon"></i>
+                            <div class="input-data ">
+                                <div class="text-data">Password</div>
+                                <label for="input-password"></label>
+                                <input type="password" id="input-password" name="input-password">
+                            </div>
+                    </div>
+                    <div class="choose">
+                        <label for="checkbox-remember" class="checkbox-container">
+                            <input type="checkbox" id="checkbox-remember" name="checkbox-remember">
+                            <span class="checkmark"></span>Remember Me
+                        </label>
+        
+                       
+                        
+                        <a href="#" class="text-data forget-password">Forget Password?</a>
+                    </div>
+        
+                    <div class="btn">
+                        <button type="button" class="btn-login" onclick="login()">Login Now</button>
+                        <button class="btn-create-account"
+                            onclick="document.getElementById('home-page').style.display='none'">Create
+                            Account</button>
+                    </div>
+                </form>
+            </div>
+            
+
+
+            <div class="text-data pd-20-0">Or you can join with</div>
+            <!--  -->
+            <div class="login-other-method">
+                <img class="login-logo" src="assets/img/icons8-google-48.png" alt=""><a href="#"></a></img><img
+                    class="login-logo" src="assets\img\icons8-facebook-48.png" alt=""><a href="#"></a></img><img
+                    class="login-logo" src="assets\img\icons8-twitter-circled-48.png" alt=""><a href="#"></a></img>
+            </div>
+        </div>
+    </div>
+    <script>
+        async function abc(){
+            console.log("111");
+        }
+
+        async function login() {
+            
+            const username = document.getElementById('input-username').value;
+            const password = document.getElementById('input-password').value;
+
+            console.log(username, password);
+
+            await fetch('/login', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            })
+            .then(response => {
+                if (!response) {
+                throw new Error('Login failed');
+                }
+                return response;
+            })
+            .then(data => {
+                // Handle successful login, e.g., redirect or update UI
+                console.log('Login successful', data);
+            })
+            .catch(error => {
+                // Handle login error, e.g., display an error message
+                console.error('Login failed', error);
+            });
+        }
+    </script>
+</body>
+
+</html>
